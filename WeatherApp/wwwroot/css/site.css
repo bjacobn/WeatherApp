@@ -1,71 +1,205 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Century Gothic;
+    box-sizing: border-box;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+
+/*--------- Conditional Background image -------*/
+
+.day-image {
+    background-image: url(../images/day.jpg);
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.night-image {
+    background-image: url(../images/night.jpg);
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+header {
+    height: 120vh;
+    background-size: cover;
+    background-position: center;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+
+
+
+
+/*--------- Logo -------*/
+
+
+.logo img {
+    float: left;
+    height: auto;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+div .logo {
+    display: inline-flex;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+@media screen and (max-width: 991px) {
+    .logo img {
+        width: 230px !important;
+    }
+
+
+    /*--------- Navigation -------*/
+
+
+    .navbar {
+        max-width: 100% !important;
+        margin: auto;
+    }
+
+
+    /*nav .container {
+        max-width: 100% !important;
+    }*/
+
+
+    .navbar-nav {
+        float: right;
+        list-style-type: none;
+        margin-top: 7px;
+    }
+
+        .navbar-nav li.nav-item {
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .navbar-nav .nav-item a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 50px;
+            /* border: 1px solid #fff;*/
+            transition: 0.7s ease;
+        }
+
+            .navbar-nav .nav-item a:hover {
+                background-color: #fff;
+                color: #000 !important;
+            }
+
+        .navbar-nav .nav-item.active a {
+            background-color: #fff;
+            color: #000 !important;
+        }
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: #f8f9fa;
+    }
+
+    @media screen and (min-width: 992px) {
+        .navbar-expand-lg .navbar-nav .nav-link {
+            padding-right: 1.0rem;
+            padding-left: 1.0rem;
+        }
+    }
+
+    /* .navbar .container {
+        z-index: 1;
+    }*/
+
+    .navbar-nav {
+        float: right;
+        list-style-type: none;
+        margin-top: 0px;
+    }
+
+        /* .navbar-nav {
+        width: 100% !important;
+    }*/
+
+        .navbar-nav .nav-item a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 5px;
+            /* border: 1px solid #fff;*/
+            transition: 0.7s ease;
+            /*background-color: #00A7DC;*/
+            display: flex
+        }
+
+            .navbar-nav .nav-item a:hover {
+                background-color: #fff;
+                color: #000 !important;
+            }
+
+        .navbar-nav .nav-item.active a {
+            background-color: #fff;
+            color: #000 !important;
+            border: 1px solid #00A7DC;
+        }
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+nav .container {
+    max-width: 100% !important;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+
+
+/*--------- Searchbar-------*/
+
+
+
+
+.search {
+    margin: 0 auto;
+    width: 350px;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+.form {
+    display: flex;
+    flex-direction: row;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+.search-field {
+    width: 100%;
+    padding: 10px 35px 10px 15px;
+    border: none;
+    border-radius: 100px;
+    outline: none;
+}
+
+.search-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    margin-left: -33px;
+}
+
+    .search-button img {
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
+    }
+
+
+#country-error {
+    padding-left: 20px;
+    color: #E1484C;
+}
+
+.content {
+    position: absolute;
+    top: 33%;
+    left: 48.5%;
+    transform: translate(-50%, -50%);
+}
+
+    .content h1 {
+        color: #fff;
+        font-size: 39px;
+        padding-bottom: 20px;
+        text-align: center
+    }
+
+
+/*--------- Footer-------*/
+footer {
+    text-align: center;
+    bottom: 0;
 }

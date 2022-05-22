@@ -1,0 +1,23 @@
+﻿<link href="~/css/forms.css" rel="stylesheet" />
+
+<div class="content form_inner">
+    <div class="container">
+        <div class="card form_bg">
+            <div class="card_title">
+                <h1 style="color:whitesmoke;">Create Account</h1>
+                <p><span class="redirect">Already have an account? <a href="Login">Sign In</a></span><p>
+            </div>
+            <div class="form">
+                <form>
+                    <input type="text" name="FirstName" id="FName" placeholder="First Name" required />
+                    <input type="text" name="LastName" id="LName" placeholder="Last Name" required />
+                    <input type="email" name="Email" placeholder="Email" id="email" required />
+                    <input type="password" name="Password" placeholder="Password" id="password" required />
+                    <input type="password" name="Confirm Password" placeholder="Confirm Password" id="confirmpassword" required />
+                    <input type="submit" style="background-color:dodgerblue;color:white;" value="Sign Up" />
+                    @*<p style="color: green; font-size:medium;font-weight:bold">Account created successfully</p>*@
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

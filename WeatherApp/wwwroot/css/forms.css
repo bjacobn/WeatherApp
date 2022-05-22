@@ -1,0 +1,86 @@
+﻿
+/*--------- ContactUs, Login, Signup Forms -------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Century Gothic;
+}
+
+.container {
+    position: absolute;
+    left: 0;
+    top: 16%;
+    display: block;
+}
+
+.content.form_inner {
+    position: relative;
+    width: 100%
+}
+
+.card.form_bg {
+    border-radius: 10px;
+    box-shadow: none;
+    width: 356px;
+    height: auto;
+    background: transparent !important;
+    border: none;
+    padding: 8px 25px;
+    margin-top: 0;
+}
+
+.card_title {
+    text-align: center;
+    padding: 0px;
+}
+
+    .card_title h1 {
+        font-size: 26px;
+        font-weight: bold;
+        text-align: left;
+        color: white
+    }
+
+.form {
+    background-color: none;
+}
+
+    .form input {
+        margin: 10px 0;
+        width: 100%;
+        /*background-color: #e2e2e2;*/
+        border: none;
+        outline: none;
+        padding: 9px 20px;
+        border-radius: 12px;
+ 
+        
+    }
+
+    .form button {
+        background-color: #4796ff;
+        color: #ffffff;
+        font-size: 18px;
+        outline: none;
+        border-radius: 5px;
+        border: none;
+        padding: 8px 15px;
+        width: 100%;
+    }
+
+
+
+.card a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.redirect {
+    color: #f8f9fa;
+    float: left;
+    font-weight: 400;
+}
+
+
