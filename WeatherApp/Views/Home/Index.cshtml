@@ -1,1 +1,22 @@
 ﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+
+<div class="content form_inner">
+    <div class="search">
+        <h1>Search weather</h1>
+        <form method="get" enctype="multipart/form-data" class="form validate" asp-controller="Weather" asp-action="ViewWeather">
+            <div style="width: 100%; height: 3em;">
+                <input type="search" name="country" id="country" value="" style="height:3em;" data-rule-search="true" data-msg-search="Invalid input correct format like => Sunnyvale,CA" placeholder="Search, e.g. Sunnyvale,CA" class="search-field" required />    
+            </div>
+            <button type="submit" class="search-button" style="height:3em;">
+                <img src="~/images//search.png">
+            </button>
+        </form>
+    </div>
+    <br />
+</div>

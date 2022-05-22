@@ -1,0 +1,38 @@
+﻿@model WeatherModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<link href="~/css/weathertable.css" rel="stylesheet" />
+
+<!----- Weather table result ---->
+<div class="content" style="top:51%;">
+
+    <table>
+        <caption style="font-weight:bold;color:white">Location</caption>
+        <tbody>
+            <tr>
+                <td data-label="Country">@Model.Country</td>
+                <td data-label="City">@Model.city</td>
+                <td data-label="Region">@Model.Region</td>
+                <td data-label="Time Zone">@Model.Timezone_id</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption style="font-weight:bold;color:white">Current Temperature</caption>
+        <tbody>
+            <tr>
+                <td data-label="Code">@Model.code</td>
+                <td data-label="Text">@Model.txt</td>
+                <td data-label="Temperature">@Model.temperature</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
