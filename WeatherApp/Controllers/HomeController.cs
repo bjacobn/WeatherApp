@@ -20,6 +20,9 @@ namespace WeatherApp.Controllers
 
         public IActionResult Index()
         {
+            //Parsing Data From TempData To Viewbag
+            ViewBag.Error = TempData["Error"] as string;
+            ViewBag.Search = TempData["Search"] as string;
             return View();
         }
 

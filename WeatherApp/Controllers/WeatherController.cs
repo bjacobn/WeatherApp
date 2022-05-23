@@ -1,22 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using WeatherApp.Models;
 
 namespace WeatherApp.Controllers
 {
     public class WeatherController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Search(string country)
         {
-            return View();
-        }
 
-        public IActionResult ViewWeather()
-        {
-            return View();
-        }
+            var repo = new WeatherRepository();
+            var weather = repo.GetWeather(country);
+            TempData["Search"] = country;
 
+
+            if (weather.Country == null)
+            {
+                TempData["Error"] = "Location not found,please try again.";
+                return RedirectToAction("Index", "Home");
+            }
+            return View(weather);
+        }
+        
     }
 }
+
+
+
+

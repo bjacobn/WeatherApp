@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -9,9 +8,15 @@
 <div class="content form_inner">
     <div class="search">
         <h1>Search weather</h1>
-        <form method="get" enctype="multipart/form-data" class="form validate" asp-controller="Weather" asp-action="ViewWeather">
+        <form method="get" enctype="multipart/form-data" class="form validate" asp-controller="Weather" asp-action="Search">
             <div style="width: 100%; height: 3em;">
-                <input type="search" name="country" id="country" value="" style="height:3em;" data-rule-search="true" data-msg-search="Invalid input correct format like => Sunnyvale,CA" placeholder="Search, e.g. Sunnyvale,CA" class="search-field" required />    
+                <input type="search" name="country" id="country" value="@ViewBag.Search" style="height:3em;" data-rule-search="true" data-msg-search="Invalid input correct format like => Sunnyvale,CA" placeholder="Search, e.g. Sunnyvale,CA" class="search-field" required />
+
+                @if (ViewBag.Error != null)
+                {
+
+                    <label id="country-error" class="error" for="country" style="">@ViewBag.Error</label>
+                }
             </div>
             <button type="submit" class="search-button" style="height:3em;">
                 <img src="~/images//search.png">
