@@ -1,0 +1,34 @@
+﻿@model ContactUsModel
+
+
+<link href="~/css/forms.css" rel="stylesheet" />
+
+<div class="content form_inner">
+    <div class="container">
+        <div class="card form_bg">
+            <div class="card_title">
+                <h1 style="color:whitesmoke;">Contact Us</h1>
+            </div>
+            <div class="form">
+
+                <!----METHOD TO CREATE AND RENDER FORM IN HTML--------------->
+                @using (Html.BeginForm("InsertContactUsToDatabase", "ContactUs", "Post"))
+                {
+
+                    <input type="text" name="FullName" id="FName" placeholder="Full Name" required />
+                    <input type="email" name="Email" placeholder="Email" id="email" required />
+                    <input name="Feedback" placeholder="Feedback" id="Feedback" required />
+                    <input type="submit" style="background-color:dodgerblue;color:white;" value="Submit" />
+
+                    //IF CONTACT US FIELDS OR NOT EMPTY, SHOW SUCCESS MESSAGE
+                    @if (ViewBag.Message != null)
+                    {
+                        <p style="color: green; font-size:medium;font-weight:bold">You feedback sent successfully!</p>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
