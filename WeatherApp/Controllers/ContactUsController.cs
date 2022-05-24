@@ -10,7 +10,7 @@ namespace WeatherApp.Controllers
 {
     public class ContactUsController : Controller
     {
-        //Access Modifier
+        
         private readonly IContactUsRepository _contactRepo;
                
 
@@ -28,7 +28,7 @@ namespace WeatherApp.Controllers
         public IActionResult InsertContactUsToDatabase(ContactUsModel ContactToInsert)
         {
 
-            int rows = _contactRepo.InsertContactData(ContactToInsert);
+            int rows = _contactRepo.InsertContact(ContactToInsert);
             if (rows > 0)
             {
                 TempData["Message"] = "Success";

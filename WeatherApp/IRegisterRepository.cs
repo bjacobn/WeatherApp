@@ -6,8 +6,8 @@ using WeatherApp.Models;
 
 namespace WeatherApp
 {
-    public interface IContactUsRepository
+    public interface IRegisterRepository
     {
-        public int InsertContact(ContactUsModel ContactToInsert);
+        public int InsertUser(RegisterModel UserToInsert);
     }
 }

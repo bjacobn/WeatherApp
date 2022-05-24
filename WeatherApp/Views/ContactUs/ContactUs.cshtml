@@ -10,8 +10,7 @@
                 <h1 style="color:whitesmoke;">Contact Us</h1>
             </div>
             <div class="form">
-
-                <!----METHOD TO CREATE AND RENDER FORM IN HTML--------------->
+                
                 @using (Html.BeginForm("InsertContactUsToDatabase", "ContactUs", "Post"))
                 {
 
@@ -20,7 +19,7 @@
                     <input name="Feedback" placeholder="Feedback" id="Feedback" required />
                     <input type="submit" style="background-color:dodgerblue;color:white;" value="Submit" />
 
-                    //IF CONTACT US FIELDS OR NOT EMPTY, SHOW SUCCESS MESSAGE
+                    
                     @if (ViewBag.Message != null)
                     {
                         <p style="color: green; font-size:medium;font-weight:bold">You feedback sent successfully!</p>

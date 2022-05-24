@@ -18,7 +18,7 @@ namespace WeatherApp
         }
 
         //CONTACTUS - STORE IN MYSQL
-        public int InsertContactData(ContactUsModel ContactToInsert)
+        public int InsertContact(ContactUsModel ContactToInsert)
         {
             int s = _conn.Execute("INSERT INTO contact (FullName,Email/*,Phone*/,Feedback) VALUES(@fullname,@email,@feedback); ",
                 new { fullname = ContactToInsert.FullName, email = ContactToInsert.Email, feedback = ContactToInsert.Feedback });

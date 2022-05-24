@@ -34,7 +34,6 @@ namespace WeatherApp
             });
 
             services.AddTransient<IContactUsRepository, ContactUsRepository>();
-
             services.AddControllersWithViews();
         }
 

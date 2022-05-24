@@ -9,9 +9,9 @@
 </head>
 <body>
     @{
-
+        //Time conditional background image
         DateTime currentTime = DateTime.Now;
-        var isDayTime = currentTime.Hour < 3 ? "day-image" : "night-image";
+        var isDayTime = currentTime.Hour < 17 ? "day-image" : "night-image";
 
     }
     <header class="@isDayTime">
@@ -36,7 +36,7 @@
                             <a class="nav-link text-white " asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white " asp-area="" asp-controller="Home" asp-action="Register">Signup</a>
+                            <a class="nav-link text-white " asp-area="" asp-controller="User" asp-action="Register">Signup</a>
                         </li>
                     </ul>
                 </div>
