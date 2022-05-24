@@ -39,7 +39,19 @@ namespace WeatherApp.Controllers
             return RedirectToAction("Register");
         }
 
+
+        //-----------Login ---------------------//
+
+
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
     }
+
 }
 
 
