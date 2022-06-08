@@ -3,6 +3,8 @@
 
 <link href="~/css/forms.css" rel="stylesheet" />
 
+<!------------------------ContactUs--------------->
+
 <div class="content form_inner">
     <div class="container">
         <div class="card form_bg">
@@ -10,7 +12,7 @@
                 <h1 style="color:whitesmoke;">Contact Us</h1>
             </div>
             <div class="form">
-                
+
                 @using (Html.BeginForm("InsertContactUsToDatabase", "ContactUs", "Post"))
                 {
 
@@ -19,10 +21,17 @@
                     <input name="Feedback" placeholder="Feedback" id="Feedback" required="" style="height: 95px;">
                     <input type="submit" style="background-color:dodgerblue;color:white;" value="Submit" />
 
-                    
-                    @if (ViewBag.Message != null)
+                    //Data succesfully stored in database
+                    @if (ViewBag.Message == "Success")
                     {
                         <p style="color: green; font-size:medium;font-weight:bold">You feedback sent successfully!</p>
+                    }
+
+
+                    //Data failed to store in database
+                    @if (ViewBag.Message == "Error")
+                    {
+                        <p style="color: red; font-size:medium;font-weight:bold">Feedback not sent, please try again.</p>
                     }
                 }
 
@@ -30,4 +39,3 @@
         </div>
     </div>
 </div>
-

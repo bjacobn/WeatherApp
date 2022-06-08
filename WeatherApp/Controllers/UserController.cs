@@ -12,35 +12,39 @@ namespace WeatherApp.Controllers
         private readonly IRegisterRepository _regRepo;
 
 
-        public UserController(IRegisterRepository repo)
+        public UserController(IRegisterRepository regRepo)
         {
-            _regRepo = repo;
+            _regRepo = regRepo;
         }
 
 
 
-        //-----------Register  ---------------------//
+
 
         public IActionResult Register()
         {
-            ViewBag.Message = TempData["Message"] as string;
             return View();
         }
 
 
+
+        [HttpPost]
         public IActionResult InsertUserToDatabase(RegisterModel UserToInsert)
         {
+
             int rows = _regRepo.InsertUser(UserToInsert);
             if (rows > 0)
             {
-                TempData["Message"] = "Success";
+                ViewBag.Message = "Success";
 
             }
-            return RedirectToAction("Register");
+            else
+            {
+                ViewBag.Message = "Error";
+            }
+            return View("Register");
         }
 
-
-        //-----------Login ---------------------//
 
 
 
@@ -49,14 +53,6 @@ namespace WeatherApp.Controllers
             return View();
         }
 
-
     }
 
 }
-
-
-
-
-
-
-

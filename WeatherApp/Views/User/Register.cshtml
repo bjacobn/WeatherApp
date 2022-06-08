@@ -1,7 +1,8 @@
 ﻿@model RegisterModel
-      
+
 
 <link href="~/css/forms.css" rel="stylesheet" />
+
 
 <div class="content form_inner">
     <div class="container">
@@ -12,7 +13,6 @@
             </div>
             <div class="form">
 
-                <!----METHOD TO CREATE AND RENDER FORM IN HTML--------------->
                 @using (Html.BeginForm("InsertUserToDatabase", "User", "Post"))
                 {
 
@@ -21,12 +21,21 @@
                     <input type="email" name="Email" placeholder="Email" id="email" required />
                     <input type="password" name="Password" placeholder="Password" id="password" required />
                     <input type="password" name="ConfirmPassword" placeholder="Confirm Password" id="confirmpassword" required />
+
                     <input type="submit" style="background-color:dodgerblue;color:white;" value="Sign Up" />
 
 
-                    @if (ViewBag.Message != null)
+                    //Data succesfully stored in database
+                    @if (ViewBag.Message == "Success")
                     {
-                        <p style="color: green; font-size:medium;font-weight:bold">Account created successfully</p>
+                        <p style="color: green; font-size:medium;font-weight:bold">Account created successfully!</p>
+                    }
+
+
+                    //Data failed to store in database
+                    @if (ViewBag.Message == "Error")
+                    {
+                        <p style="color: red; font-size:medium;font-weight:bold">Signup failed , please try again.</p>
                     }
                 }
 
@@ -34,5 +43,3 @@
         </div>
     </div>
 </div>
-
-

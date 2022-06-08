@@ -10,32 +10,41 @@ namespace WeatherApp.Controllers
 {
     public class ContactUsController : Controller
     {
-        
+
         private readonly IContactUsRepository _contactRepo;
-               
+
 
         public ContactUsController(IContactUsRepository contactRepo)
         {
             _contactRepo = contactRepo;
         }
 
+
         public IActionResult ContactUs()
         {
-            ViewBag.Message = TempData["Message"] as string;
             return View();
         }
 
+
+        [HttpPost]
         public IActionResult InsertContactUsToDatabase(ContactUsModel ContactToInsert)
         {
 
             int rows = _contactRepo.InsertContact(ContactToInsert);
             if (rows > 0)
             {
-                TempData["Message"] = "Success";
+
+                ViewBag.Message = "Success";
 
             }
-            return RedirectToAction("ContactUs");
-        }
+            else
+            {
 
+                ViewBag.Message = "Error";
+
+            }
+
+            return View("ContactUs");
+        }
     }
 }
