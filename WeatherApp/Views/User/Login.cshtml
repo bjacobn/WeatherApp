@@ -1,5 +1,8 @@
-﻿
+﻿@model LoginModel
 <link href="~/css/forms.css" rel="stylesheet" />
+
+
+<!------------ Login --------------->
 
 <div class="content form_inner">
     <div class="container">
@@ -9,15 +12,25 @@
                 <p><span class="redirect">Don't have an account? <a href="Register">Sign Up</a></span><p>
             </div>
             <div class="form">
-                <form>
-                    <input type="email" name="Email" placeholder="Email" id="email" required />
-                    <input type="password" name="Password" placeholder="Password" id="password" required />
+                @using (Html.BeginForm("Authorization", "User", "Post"))
+                {
+                    
+                    <input type="text" name="Email" placeholder="Email" id="email" asp-for="Email" />
+                    <span class="text-danger" asp-validation-for="Email"></span>
+
+
+                    <input type="password" name="Password" placeholder="Password" id="password" />
+                    <span class="text-danger" asp-validation-for="Password"></span>
+
                     <input type="submit" style="background-color:dodgerblue;color:white;" value="Login" />
-                    @*<p style="color: red; font-size:medium;font-weight:bold">Incorrect Username or Password!</p>*@
-                </form>
+
+                    @if (ViewBag.Error == "Error")
+                    {
+                        <p style="color: red; font-size:medium;font-weight:bold">Incorrect Username or Password.</p>
+                    }
+
+                }
             </div>
         </div>
     </div>
 </div>
-
-

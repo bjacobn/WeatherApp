@@ -16,9 +16,13 @@
                 @using (Html.BeginForm("InsertContactUsToDatabase", "ContactUs", "Post"))
                 {
 
-                    <input type="text" name="FullName" id="FName" placeholder="Full Name" required />
-                    <input type="email" name="Email" placeholder="Email" id="email" required />
-                    <input name="Feedback" placeholder="Feedback" id="Feedback" required="" style="height: 95px;">
+                    <input type="text" name="FullName" id="FName" asp-for="FullName" placeholder="Full Name" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                    <input type="text" name="Email" placeholder="Email" id="email" asp-for="Email" />
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                    <input name="Feedback" placeholder="Feedback" id="Feedback" asp-for="Feedback" style="height: 95px;">
+                    <span asp-validation-for="Feedback" class="text-danger"></span>
+
                     <input type="submit" style="background-color:dodgerblue;color:white;" value="Submit" />
 
                     //Data succesfully stored in database

@@ -6,9 +6,8 @@ using WeatherApp.Models;
 
 namespace WeatherApp
 {
-    public interface IRegisterRepository
+    public interface ILoginRepository
     {
-        public int InsertUser(RegisterModel UserToInsert);
-        bool IsEmailExist(string email);
+        public LoginModel GetUser(string email, string password);
     }
 }

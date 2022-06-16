@@ -18,6 +18,7 @@ namespace WeatherApp
 
         }
 
+
         public int InsertUser(RegisterModel UserToInsert)
         {
             int s = _conn.Execute("INSERT INTO userdata (FirstName, LastName,Email,Password) VALUES(@fname, @lname,@email,@password); ",
@@ -25,6 +26,13 @@ namespace WeatherApp
             return s;
         }
 
+        public bool IsEmailExist(string email)
+        {
+            var count = _conn.ExecuteScalar<int>("SELECT COUNT(*) FROM userdata WHERE Email ='" + email + "' ");
+            if (count > 0)
+                return false; // already registered
 
+                return true;  // avaiable for registraion
+        }
     }
 }

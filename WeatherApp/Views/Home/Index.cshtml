@@ -4,18 +4,20 @@
 
 <link href="~/css/site.css" rel="stylesheet" />
 
+<!----------------Search-bar--------------->
+
 
 <div class="content form_inner">
     <div class="search">
         <h1>Search weather</h1>
-        <form method="get" enctype="multipart/form-data" class="form validate" asp-controller="Weather" asp-action="Search">
+        <form method="get" enctype="multipart/form-data" class="form validate" asp-controller="Weather" asp-action="ViewWeather">
             <div style="width: 100%; height: 3em;">
-                <input type="search" name="country" id="country" value="@ViewBag.Search" style="height:3em;" data-rule-search="true" data-msg-search="Invalid input correct format like => Sunnyvale,CA" placeholder="Search, e.g. Sunnyvale,CA" class="search-field" required />
+                <input type="search" name="country" id="country" value="@ViewBag.Search" placeholder="Search, e.g. Sunnyvale,CA" class="search-field" required />
 
                 @if (ViewBag.Error != null)
                 {
-
-                    <label id="country-error" class="error" for="country" style="">@ViewBag.Error</label>
+                    
+                    <label id="country-error" class="error" for="country" style="">Location not found,please try again.</label>
                 }
             </div>
             <button type="submit" class="search-button" style="height:3em;">

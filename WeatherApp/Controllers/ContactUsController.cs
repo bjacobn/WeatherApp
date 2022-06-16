@@ -11,12 +11,12 @@ namespace WeatherApp.Controllers
     public class ContactUsController : Controller
     {
 
-        private readonly IContactUsRepository _contactRepo;
+        private readonly IContactUsRepository contactRepo;
 
 
         public ContactUsController(IContactUsRepository contactRepo)
         {
-            _contactRepo = contactRepo;
+            this.contactRepo = contactRepo;
         }
 
 
@@ -29,19 +29,27 @@ namespace WeatherApp.Controllers
         [HttpPost]
         public IActionResult InsertContactUsToDatabase(ContactUsModel ContactToInsert)
         {
+            //Validate Model
+            if (!ModelState.IsValid)
+            {
+                return View("ContactUs", ContactToInsert);
+            }
 
-            int rows = _contactRepo.InsertContact(ContactToInsert);
+
+            //Check database row insertion
+            int rows = contactRepo.InsertContact(ContactToInsert);
             if (rows > 0)
             {
 
                 ViewBag.Message = "Success";
+                ModelState.Clear();
 
             }
             else
             {
 
                 ViewBag.Message = "Error";
-
+                ModelState.Clear();
             }
 
             return View("ContactUs");

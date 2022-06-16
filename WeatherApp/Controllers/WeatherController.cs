@@ -6,24 +6,28 @@ namespace WeatherApp.Controllers
 {
     public class WeatherController : Controller
     {
-        public IActionResult Search(string country)
+        public IActionResult ViewWeather(string country)
         {
 
             var repo = new WeatherRepository();
             var weather = repo.GetWeather(country);
-            TempData["Search"] = country;
-
+            
 
             if (weather.Country == null)
             {
-                TempData["Error"] = "Location not found,please try again.";
-                return RedirectToAction("Index", "Home");
+
+                ViewBag.Error = "Error";
+                ViewBag.Search = country;
+
+                return View("../Home/Index");
             }
             return View(weather);
         }
-        
     }
 }
+
+
+
 
 
 
