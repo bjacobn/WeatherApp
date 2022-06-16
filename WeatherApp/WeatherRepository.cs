@@ -7,7 +7,7 @@ namespace WeatherApp
 {
     public class WeatherRepository : IWeatherRepository
     {
-        private static readonly string apiKey = System.IO.File.ReadAllText("api.txt");
+        private static readonly string apiKey = System.IO.File.ReadAllText("apikey.txt");
 
         public WeatherModel GetWeather(string userInput)
         {
