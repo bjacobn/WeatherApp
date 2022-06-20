@@ -17,12 +17,13 @@
     background-image: url(../images/night.jpg);
 }
 
-header {
-    height: 120vh;
-    background-size: cover;
-    background-position: center;
-}
 
+header {
+    height: 100vh;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
 
 
 
