@@ -2,13 +2,12 @@
 using RestSharp;
 using WeatherApp.Models;
 using System;
+using dotenv.net;
 
 namespace WeatherApp
 {
     public class WeatherRepository : IWeatherRepository
     {
-        private static readonly string apiKey = System.IO.File.ReadAllText("apikey.txt");
-
         public WeatherModel GetWeather(string userInput)
         {
             try
@@ -17,13 +16,16 @@ namespace WeatherApp
                 var city = countrydata[0].ToString();
                 var countryname = countrydata[1].ToString();
 
+                var envVars = DotEnv.Read();
+                var _key = envVars["KEY"];
+
                 var weather = new WeatherModel();
                 var client = new RestClient("https://yahoo-weather5.p.rapidapi.com/weather?location=" + city + "%2C" + countryname + "&format=json&u=f");
                 var request = new RestRequest(Method.GET);
 
 
                 request.AddHeader("X-RapidAPI-Host", "yahoo-weather5.p.rapidapi.com");
-                request.AddHeader("X-RapidAPI-Key", apiKey);
+                request.AddHeader("X-RapidAPI-Key", _key);
                 IRestResponse response = client.Execute(request);
 
                 if (response.StatusCode != System.Net.HttpStatusCode.InternalServerError)
