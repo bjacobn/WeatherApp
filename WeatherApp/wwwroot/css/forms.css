@@ -11,7 +11,7 @@
 .container {
     position: absolute;
     left: 0;
-    top: 16%;
+    top: 26%;
     display: block;
 }
 
@@ -27,8 +27,8 @@
     height: auto;
     background: transparent !important;
     border: none;
-    padding: 8px 25px;
-    margin-top: 0;
+    padding: 8px 15px;
+    margin-top: 9;
 }
 
 @media(max-width:576px) {
@@ -47,7 +47,8 @@
             font-size: 26px;
             font-weight: bold;
             text-align: left;
-            color: white
+            color: white;
+            padding-bottom: 3px;
         }
 
     .form {
@@ -55,11 +56,11 @@
     }
 
         .form input {
-            margin: 10px 0;
+            margin: 8px 0;
             width: 100%;
             border: none;
             outline: none;
-            padding: 9px 20px;
+            padding: 9px 19px;
             border-radius: 12px;
         }
 

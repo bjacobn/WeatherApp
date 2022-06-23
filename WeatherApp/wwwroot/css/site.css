@@ -18,11 +18,12 @@
 }
 
 header {
-    height: 100vh;
-    background-size: cover; 
+    height: 120vh;
+    background-size: cover;
     background-position: center;
-    background-repeat  : no-repeat;
 }
+
+
 
 
 
@@ -51,6 +52,8 @@ div .logo {
         max-width: 100% !important;
         margin: auto;
     }
+
+
 
 
     .navbar-nav {
@@ -93,17 +96,19 @@ div .logo {
     }
 
 
+
     .navbar-nav {
         float: right;
         list-style-type: none;
-        margin-top: 0px;
+        margin-top: -12px;
     }
 
-       
+
+
         .navbar-nav .nav-item a {
             text-decoration: none;
             color: #fff;
-            padding: 5px 5px;
+            padding: 3px 5px;
             transition: 0.7s ease;
             display: flex
         }
@@ -170,7 +175,7 @@ nav .container {
 
 .content {
     position: absolute;
-    top: 33%;
+    top: 37%;
     left: 48.5%;
     transform: translate(-50%, -50%);
 }
