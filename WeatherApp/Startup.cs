@@ -51,6 +51,7 @@ namespace WeatherApp
             //Login session
             services.AddSession();
 
+
             
             services.AddTransient<IContactUsRepository, ContactUsRepository>();
             services.AddTransient<IRegisterRepository, RegisterRepository>();
