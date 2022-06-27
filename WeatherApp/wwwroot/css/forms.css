@@ -11,7 +11,7 @@
 .container {
     position: absolute;
     left: 0;
-    top: 26%;
+    top: 28%;
     display: block;
 }
 
@@ -29,6 +29,12 @@
     border: none;
     padding: 8px 15px;
     margin-top: 9;
+}
+
+.text-danger {
+
+    color: #f52b3e !important;
+    font-weight: bold;
 }
 
 @media(max-width:576px) {
@@ -87,5 +93,6 @@
         float: left;
         font-weight: 400;
     }
+
 
 
