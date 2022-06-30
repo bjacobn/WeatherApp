@@ -15,10 +15,10 @@ namespace WeatherApp.Models
         public string Timezone_id { get; set; }
         public string Woeid { get; set; }
 
-
-        public string code { get; set; }
-        public string txt { get; set; }
         public string temperature { get; set; }
+        public string atmosphere { get; set; }
+        public string condition { get; set; }
+        
     }
 }
 

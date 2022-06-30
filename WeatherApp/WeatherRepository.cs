@@ -33,6 +33,8 @@ namespace WeatherApp
                     var location = JObject.Parse(response.Content).GetValue("location");
                     var currentobservation = JObject.Parse(response.Content).GetValue("current_observation");
                     var condition = JObject.Parse(currentobservation.ToString()).GetValue("condition");
+                    var atmosphere = JObject.Parse(currentobservation.ToString()).GetValue("atmosphere");
+
 
                     weather.Country = (string)location["country"];
                     weather.city = (string)location["city"];
@@ -40,8 +42,8 @@ namespace WeatherApp
                     weather.Woeid = (string)location["woeid"];
                     weather.Timezone_id = (string)location["timezone_id"];
 
-                    weather.code = (string)condition["code"];
-                    weather.txt = (string)condition["text"];
+                    weather.atmosphere = (string)atmosphere["humidity"];
+                    weather.condition = (string)condition["text"];
                     weather.temperature = (string)condition["temperature"];
 
                 }
