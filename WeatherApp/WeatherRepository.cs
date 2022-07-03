@@ -21,9 +21,8 @@ namespace WeatherApp
 
                 var weather = new WeatherModel();
                 var client = new RestClient("https://yahoo-weather5.p.rapidapi.com/weather?location=" + city + "%2C" + countryname + "&format=json&u=f");
+               
                 var request = new RestRequest(Method.GET);
-
-
                 request.AddHeader("X-RapidAPI-Host", "yahoo-weather5.p.rapidapi.com");
                 request.AddHeader("X-RapidAPI-Key", _key);
                 IRestResponse response = client.Execute(request);

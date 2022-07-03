@@ -67,13 +67,13 @@ namespace WeatherApp.Controllers
 
         public IActionResult Authorization(LoginModel data)
         {
-            //Validate model
+            //First Validate model
             if (!ModelState.IsValid)
             {
                 return View("Login");
             }
 
-            //Get user creditials from database
+            //Login Successful
             LoginModel usr = loginRepo.GetUser(data.Email, data.Password);
             if (usr != null)
             {
@@ -81,7 +81,7 @@ namespace WeatherApp.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            //User creditials does not exist
+            //Login
             else
             {
                 ViewBag.Error = "Error";
