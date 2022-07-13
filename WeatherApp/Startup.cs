@@ -41,7 +41,7 @@ namespace WeatherApp
             //MySql
             services.AddScoped<IDbConnection>((s) =>
             {
-                IDbConnection conn = new MySqlConnection(Configuration.GetConnectionString("azure"));
+                IDbConnection conn = new MySqlConnection(Configuration.GetConnectionString("CLEARDB_DATABASE_URL"));
                 conn.Open();
                 return conn;
 
@@ -74,6 +74,9 @@ namespace WeatherApp
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+
+                var envVars = Environment.GetEnvironmentVariable("APIKEY");
+                var _key = envVars;
             }
             app.UseSession();
 

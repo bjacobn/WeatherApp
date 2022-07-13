@@ -37,7 +37,7 @@ namespace WeatherApp.Controllers
             //Validate model
             if (!ModelState.IsValid)
             {
-                return View("Register", UserToInsert);
+                return View("Register");
             }
 
             //Check database row insertion

@@ -17,7 +17,7 @@ namespace WeatherApp
                 var countryname = countrydata[1].ToString();
 
                 var envVars = DotEnv.Read();
-                var _key = envVars["KEY"];
+                var _key = envVars["APIKEY"];
 
                 var weather = new WeatherModel();
                 var client = new RestClient("https://yahoo-weather5.p.rapidapi.com/weather?location=" + city + "%2C" + countryname + "&format=json&u=f");

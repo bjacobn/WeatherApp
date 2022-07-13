@@ -32,7 +32,7 @@ namespace WeatherApp.Controllers
             //Validate Model
             if (!ModelState.IsValid)
             {
-                return View("ContactUs", ContactToInsert);
+                return View("ContactUs");
             }
 
 
