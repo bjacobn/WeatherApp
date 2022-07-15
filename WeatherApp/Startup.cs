@@ -43,7 +43,6 @@ namespace WeatherApp
             //MySql
             services.AddScoped<IDbConnection>((s) =>
             {
-                var envVars = DotEnv.Read();
                 var environment = Environment.GetEnvironmentVariable("ENVIRONMENT");
                 var envConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
@@ -57,43 +56,7 @@ namespace WeatherApp
             });
 
 
-            //services.AddDbContext<DbContext>(s =>
-            //{
-
-            //    var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            //    string conn;
-
-            //    if (env == "Development")
-            //    {
-            //        conn = Configuration.GetConnectionString("DemoConnection");
-
-
-            //    }
-            //    else
-            //    {
-            //        // Use connection string provided at runtime by Heroku.
-            //        var connUrl = Environment.GetEnvironmentVariable("CLEARDB_DATABASE_URL");
-
-            //        connUrl = connUrl.Replace("mysql://", string.Empty);
-            //        var userPassSide = connUrl.Split("@")[0];
-            //        var hostSide = connUrl.Split("@")[1];
-
-            //        var connUser = userPassSide.Split(":")[0];
-            //        var connPass = userPassSide.Split(":")[1];
-            //        var connHost = hostSide.Split("/")[0];
-            //        var connDb = hostSide.Split("/")[1].Split("?")[0];
-
-
-            //        conn = $"server={connHost};Uid={connUser};Pwd={connPass};Database={connDb}";
-
-            //    }
-
-            //    s.UseMySql(connStr);
-
-            //});
-
-
-
+           
 
 
             //Login session

@@ -17,15 +17,7 @@ namespace WeatherApp
                 var city = countrydata[0].ToString();
                 var countryname = countrydata[1].ToString();
 
-               
-                
-                //Development 
-                var envVars = DotEnv.Read();
-                var _key = envVars["APIKEY"];
-
-                //Production
-                //var envVars = Environment.GetEnvironmentVariable("APIKEY");
-                //var _key = envVars;
+                var _key = Environment.GetEnvironmentVariable("APIKEY");
 
 
 
