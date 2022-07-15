@@ -1,3 +1,4 @@
+using dotenv.net;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -41,13 +43,53 @@ namespace WeatherApp
             //MySql
             services.AddScoped<IDbConnection>((s) =>
             {
-                IDbConnection conn = new MySqlConnection(Configuration.GetConnectionString("CLEARDB_DATABASE_URL"));
+
+                IDbConnection conn = new MySqlConnection(Configuration.GetConnectionString("weatherapp"));
                 conn.Open();
                 return conn;
 
             });
 
-            
+
+            //services.AddDbContext<DbContext>(s =>
+            //{
+
+            //    var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            //    string conn;
+
+            //    if (env == "Development")
+            //    {
+            //        conn = Configuration.GetConnectionString("DemoConnection");
+
+
+            //    }
+            //    else
+            //    {
+            //        // Use connection string provided at runtime by Heroku.
+            //        var connUrl = Environment.GetEnvironmentVariable("CLEARDB_DATABASE_URL");
+
+            //        connUrl = connUrl.Replace("mysql://", string.Empty);
+            //        var userPassSide = connUrl.Split("@")[0];
+            //        var hostSide = connUrl.Split("@")[1];
+
+            //        var connUser = userPassSide.Split(":")[0];
+            //        var connPass = userPassSide.Split(":")[1];
+            //        var connHost = hostSide.Split("/")[0];
+            //        var connDb = hostSide.Split("/")[1].Split("?")[0];
+
+
+            //        conn = $"server={connHost};Uid={connUser};Pwd={connPass};Database={connDb}";
+
+            //    }
+
+            //    s.UseMySql(connStr);
+
+            //});
+
+
+
+
+
             //Login session
             services.AddSession();
 
@@ -68,6 +110,9 @@ namespace WeatherApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+
+              
             }
             else
             {
@@ -75,8 +120,8 @@ namespace WeatherApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
 
-                var envVars = Environment.GetEnvironmentVariable("APIKEY");
-                var _key = envVars;
+                //var envVars = Environment.GetEnvironmentVariable("APIKEY");
+                //var _key = envVars;
             }
             app.UseSession();
 

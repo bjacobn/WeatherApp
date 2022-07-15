@@ -10,14 +10,24 @@ namespace WeatherApp
     {
         public WeatherModel GetWeather(string userInput)
         {
+
             try
             {
                 string[] countrydata = userInput.Trim().Split(',');
                 var city = countrydata[0].ToString();
                 var countryname = countrydata[1].ToString();
 
+               
+                
+                //Development 
                 var envVars = DotEnv.Read();
                 var _key = envVars["APIKEY"];
+
+                //Production
+                //var envVars = Environment.GetEnvironmentVariable("APIKEY");
+                //var _key = envVars;
+
+
 
                 var weather = new WeatherModel();
                 var client = new RestClient("https://yahoo-weather5.p.rapidapi.com/weather?location=" + city + "%2C" + countryname + "&format=json&u=f");

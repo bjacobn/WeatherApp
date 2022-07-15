@@ -1,1 +1,1 @@
-﻿KEY=Place your key here
+﻿APIKEY=Place your key here
