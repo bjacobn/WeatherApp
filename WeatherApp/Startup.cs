@@ -43,8 +43,15 @@ namespace WeatherApp
             //MySql
             services.AddScoped<IDbConnection>((s) =>
             {
+                var envVars = DotEnv.Read();
+                var environment = envVars["ENVIRONMENT"];
+                var envConnectionString = envVars["CONNECTION_STRING"];
 
-                IDbConnection conn = new MySqlConnection(Configuration.GetConnectionString("weatherapp"));
+                var connectionString = environment == "dev"
+                    ? Configuration.GetConnectionString("weatherapp")
+                    : envConnectionString;
+
+                IDbConnection conn = new MySqlConnection(connectionString);
                 conn.Open();
                 return conn;
 
