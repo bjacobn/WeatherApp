@@ -40,15 +40,15 @@ namespace WeatherApp
 
 
 
-            //MySql
+            //MySQL
             services.AddScoped<IDbConnection>((s) =>
-            {
+            {   
                 var environment = Environment.GetEnvironmentVariable("ENVIRONMENT");
-                var envConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+                var herokuConnectionString = Environment.GetEnvironmentVariable("REMOTEDB");
+                var connectionString = environment == "development"
+                          ? Configuration.GetConnectionString("LOCALDB")
+                          : herokuConnectionString;
 
-                var connectionString = environment == "dev"
-                    ? Configuration.GetConnectionString("weatherapp")
-                    : envConnectionString;
 
                 IDbConnection conn = new MySqlConnection(connectionString);
                 conn.Open();
@@ -56,14 +56,10 @@ namespace WeatherApp
             });
 
 
-           
-
 
             //Login session
             services.AddSession();
-
-
-            
+ 
             services.AddTransient<IContactUsRepository, ContactUsRepository>();
             services.AddTransient<IRegisterRepository, RegisterRepository>();
             services.AddTransient<ILoginRepository, LoginRepository>();
@@ -79,8 +75,6 @@ namespace WeatherApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-
               
             }
             else
@@ -95,6 +89,7 @@ namespace WeatherApp
             app.UseSession();
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();

@@ -19,8 +19,6 @@ namespace WeatherApp
 
                 var _key = Environment.GetEnvironmentVariable("APIKEY");
 
-
-
                 var weather = new WeatherModel();
                 var client = new RestClient("https://yahoo-weather5.p.rapidapi.com/weather?location=" + city + "%2C" + countryname + "&format=json&u=f");
                
