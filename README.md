@@ -45,7 +45,7 @@ Cloud services :
 
 ## Usage
 
-To demo the application on Heroku : [Click here](https://weathermvcdemo.herokuapp.com/ "Click here")
+To demo the application on Heroku : [Click here](https://weatherdotnetdemo.herokuapp.com/ "Click here")
 
 To Fork or Clone and run on your local machine :
 
