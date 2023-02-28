@@ -6,17 +6,26 @@ namespace WeatherApp.Controllers
 {
     public class WeatherController : Controller
     {
-        public IActionResult ViewWeather(string country)
+        private readonly IWeatherRepository _weatherRepo;
+
+        public WeatherController(IWeatherRepository weatherRepo)
+        {
+            _weatherRepo = weatherRepo;
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ViewWeatherAsync(string country)
         {
 
-            var repo = new WeatherRepository();
-            var weather = repo.GetWeather(country);
-            
+            var viewModel = new WeatherModel();
+            var weather = await _weatherRepo.GetWeatherAsync(country);
+
 
             if (weather.Country == null)
             {
 
-                ViewBag.Error = "Error";
+                viewModel.Message = "Error";
                 ViewBag.Search = country;
 
                 return View("../Home/Index");

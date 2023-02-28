@@ -1,10 +1,8 @@
 ﻿@model RegisterModel
-
-
 <link href="~/css/forms.css" rel="stylesheet" />
 
 
-<!-----------------------Register-------------->
+<!--------------- Register-------------->
 
 <div class="content form_inner">
     <div class="container">
@@ -35,16 +33,13 @@
 
                     <input type="submit" style="background-color:dodgerblue;color:white;" value="Sign Up" />
 
-
-                    //Data succesfully stored in database
-                    @if (ViewBag.Message == "Success")
+   
+                    @if (Model.Message == "Success")
                     {
-                        <p style="color: green; font-size:medium;font-weight:bold">Account created successfully!</p>
+                        <p style="color: green; font-size: medium; font-weight: bold">Account created successfully!</p>
                     }
 
-
-                    //Data failed to store in database
-                    @if (ViewBag.Message == "Error")
+                    @if (Model.Message == "Error")
                     {
                         <p style="color: red; font-size:medium;font-weight:bold">Signup failed , please try again.</p>
                     }

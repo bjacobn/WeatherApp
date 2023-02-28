@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WeatherApp.Models;
 
@@ -11,48 +7,49 @@ namespace WeatherApp.Controllers
     public class ContactUsController : Controller
     {
 
-        private readonly IContactUsRepository contactRepo;
+        private readonly IContactUsRepository _contactRepo;
 
 
         public ContactUsController(IContactUsRepository contactRepo)
         {
-            this.contactRepo = contactRepo;
+            _contactRepo = contactRepo;
         }
 
 
         public IActionResult ContactUs()
         {
-            return View();
+            var viewModel = new ContactUsModel();
+            return View(viewModel);
         }
 
-
         [HttpPost]
-        public IActionResult InsertContactUsToDatabase(ContactUsModel ContactToInsert)
+        public async Task<IActionResult> InsertContactUsToDatabase(ContactUsModel contactToInsert)
         {
             //Validate Model
             if (!ModelState.IsValid)
             {
-                return View("ContactUs");
+                return View("ContactUs", contactToInsert);
             }
 
+            var viewModel = new ContactUsModel();
 
             //Check database row insertion
-            int rows = contactRepo.InsertContact(ContactToInsert);
+            int rows = await _contactRepo.InsertContactAsync(contactToInsert);
             if (rows > 0)
             {
 
-                ViewBag.Message = "Success";
+                viewModel.Message = "Success";
                 ModelState.Clear();
 
             }
             else
             {
 
-                ViewBag.Message = "Error";
+                viewModel.Message = "Error";
                 ModelState.Clear();
             }
 
-            return View("ContactUs");
+            return View("ContactUs", viewModel);
         }
     }
 }

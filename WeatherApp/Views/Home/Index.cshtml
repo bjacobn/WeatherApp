@@ -14,9 +14,9 @@
             <div style="width: 100%; height: 3em;">
                 <input type="search" name="country" id="country" value="@ViewBag.Search" placeholder="Search, e.g. Sunnyvale,CA" class="search-field" required />
 
-                @if (ViewBag.Error != null)
+                @if (Model.Message != null)
                 {
-                    
+
                     <label id="country-error" class="error" for="country" style="">Location not found,please try again.</label>
                 }
             </div>

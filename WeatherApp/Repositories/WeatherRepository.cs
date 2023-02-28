@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json.Linq;
 using RestSharp;
-using WeatherApp.Models;
 using System;
-using dotenv.net;
+using System.Threading.Tasks;
+using WeatherApp.Models;
 
 namespace WeatherApp
 {
     public class WeatherRepository : IWeatherRepository
     {
-        public WeatherModel GetWeather(string userInput)
+        public async Task<WeatherModel> GetWeatherAsync(string userInput)
         {
-
             try
             {
                 string[] countrydata = userInput.Trim().Split(',');
@@ -19,13 +18,13 @@ namespace WeatherApp
 
                 var _key = Environment.GetEnvironmentVariable("APIKEY");
 
-                var weather = new WeatherModel();
                 var client = new RestClient("https://yahoo-weather5.p.rapidapi.com/weather?location=" + city + "%2C" + countryname + "&format=json&u=f");
-               
                 var request = new RestRequest(Method.GET);
                 request.AddHeader("X-RapidAPI-Host", "yahoo-weather5.p.rapidapi.com");
                 request.AddHeader("X-RapidAPI-Key", _key);
-                IRestResponse response = client.Execute(request);
+                var response = await client.ExecuteAsync(request);
+
+                var weather = new WeatherModel();
 
                 if (response.StatusCode != System.Net.HttpStatusCode.InternalServerError)
                 {
@@ -37,7 +36,6 @@ namespace WeatherApp
 
                     weather.Country = (string)location["country"];
                     weather.city = (string)location["city"];
-                    weather.Region = (string)location["region"];
                     weather.Woeid = (string)location["woeid"];
                     weather.Timezone_id = (string)location["timezone_id"];
 

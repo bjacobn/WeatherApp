@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using WeatherApp.Models;
 
 namespace WeatherApp.Controllers
@@ -9,91 +8,91 @@ namespace WeatherApp.Controllers
     public class UserController : Controller
     {
 
-        private readonly IRegisterRepository regRepo;
-        private readonly ILoginRepository loginRepo;
+        private readonly IRegisterRepository _regRepo;
+        private readonly ILoginRepository _loginRepo;
 
 
         public UserController(IRegisterRepository regRepo, ILoginRepository loginRepo)
         {
-            this.regRepo = regRepo;
-            this.loginRepo = loginRepo;
+            _regRepo = regRepo;
+            _loginRepo = loginRepo;
         }
-
 
 
         //-----------  Register  ---------------------//
 
         public IActionResult Register()
         {
-            return View();
+            var viewModel = new RegisterModel();
+            return View(viewModel);
         }
 
-
-
         [HttpPost]
-        public IActionResult InsertUserToDatabase(RegisterModel UserToInsert)
+        public async Task<IActionResult> InsertUserToDatabaseAsync(RegisterModel userToInsert)
         {
 
             //Validate model
             if (!ModelState.IsValid)
             {
-                return View("Register");
+                return View("Register", userToInsert);
             }
 
+            var viewModel = new RegisterModel();
+
             //Check database row insertion
-            int rows = regRepo.InsertUser(UserToInsert);
+            int rows = await _regRepo.InsertUserAsync(userToInsert);
             if (rows > 0)
             {
-                ViewBag.Message = "Success";
+                viewModel.Message = "Success";
                 ModelState.Clear();
             }
             else
             {
-                ViewBag.Message = "Error";
+                viewModel.Message = "Error";
                 ModelState.Clear();
             }
-            return View("Register");
+            return View("Register", viewModel);
         }
-
 
 
         //-------------- Login ---------------------//
 
-
         public IActionResult Login()
         {
-            return View();
+            var viewModel = new LoginModel();
+            return View(viewModel);
         }
 
-        public IActionResult Authorization(LoginModel data)
+        [HttpPost]
+        public async Task<IActionResult> AuthorizationAsync(LoginModel auth)
         {
-            //First Validate model
+            //Validate model
             if (!ModelState.IsValid)
             {
-                return View("Login");
+                return View("Login", auth);
             }
 
-            //Login Successful
-            LoginModel usr = loginRepo.GetUser(data.Email, data.Password);
+            var viewModel = new LoginModel();
+
+            //Login succesful
+            LoginModel usr = await _loginRepo.GetUserAsync(auth.Email, auth.Password);
             if (usr != null)
             {
                 HttpContext.Session.SetString("LoginName", usr.FirstName);
                 return RedirectToAction("Index", "Home");
             }
 
-            //Login
+            //Login failed
             else
             {
-                ViewBag.Error = "Error";
+                viewModel.Message = "Error";
                 ModelState.Clear();
-                return View("Login");
+                return View("Login", auth);
             }
         }
 
 
-
         //---------------------Logout--------------------//
-
 
         public IActionResult Logout()
         {

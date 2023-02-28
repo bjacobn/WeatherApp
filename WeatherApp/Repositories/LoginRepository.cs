@@ -1,6 +1,4 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,10 +15,10 @@ namespace WeatherApp
             _conn = conn;
         }
 
-        //Dapper - Read Data from MySQL
-        public LoginModel GetUser(string email, string password)
+        //Authorize user
+        public async Task<LoginModel> GetUserAsync(string email, string password)
         {
-            var user = _conn.Query<LoginModel>("SELECT * FROM userdata WHERE Email ='" + email + "' and Password='" + password + "'");
+            var user = await _conn.QueryAsync<LoginModel>("SELECT * FROM userdata WHERE Email ='" + email + "' and Password='" + password + "'");
 
             if (user.Count() > 0)
             {

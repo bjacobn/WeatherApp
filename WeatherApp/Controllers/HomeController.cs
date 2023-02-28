@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using WeatherApp.Models;
 
 namespace WeatherApp.Controllers
@@ -20,12 +16,11 @@ namespace WeatherApp.Controllers
 
         public IActionResult Index()
         {
-            
-            return View();
+            var viewModel = new WeatherModel();
+            return View(viewModel);
         }
 
         
-
         public IActionResult Privacy()
         {
             return View();

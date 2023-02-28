@@ -1,8 +1,5 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using WeatherApp.Models;
 
@@ -18,17 +15,18 @@ namespace WeatherApp
 
         }
 
-
-        public int InsertUser(RegisterModel UserToInsert)
+        //Store new user
+        public async Task<int> InsertUserAsync(RegisterModel userToInsert)
         {
-            int s = _conn.Execute("INSERT INTO userdata (FirstName, LastName,Email,Password) VALUES(@fname, @lname,@email,@password); ",
-                new { fname = UserToInsert.FirstName, lname = UserToInsert.LastName, email = UserToInsert.Email, password = UserToInsert.Password });
+            int s = await _conn.ExecuteAsync("INSERT INTO userdata (FirstName, LastName,Email,Password) VALUES(@fname, @lname,@email,@password); ",
+                new { fname = userToInsert.FirstName, lname = userToInsert.LastName, email = userToInsert.Email, password = userToInsert.Password });
             return s;
         }
 
+        //Check if user exists
         public bool IsEmailExist(string email)
         {
-            var count = _conn.ExecuteScalar<int>("SELECT COUNT(*) FROM userdata WHERE Email ='" + email + "' ");
+            var count =  _conn.ExecuteScalar<int>("SELECT COUNT(*) FROM userdata WHERE Email ='" + email + "' ");
             if (count > 0)
                 return false; // already registered
 

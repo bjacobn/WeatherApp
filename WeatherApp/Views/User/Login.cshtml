@@ -24,7 +24,7 @@
 
                     <input type="submit" style="background-color:dodgerblue;color:white;" value="Login" />
 
-                    @if (ViewBag.Error == "Error")
+                    @if (Model.Message == "Error")
                     {
                         <p style="color: red; font-size:medium;font-weight:bold">Incorrect Username or Password.</p>
                     }

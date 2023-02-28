@@ -1,21 +1,14 @@
-using dotenv.net;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 
 
 namespace WeatherApp
@@ -38,8 +31,6 @@ namespace WeatherApp
              .AddFluentValidation(fvc =>
                  fvc.RegisterValidatorsFromAssemblyContaining<Startup>());
 
-
-
             //MySQL
             services.AddScoped<IDbConnection>((s) =>
             {   
@@ -54,15 +45,14 @@ namespace WeatherApp
                 conn.Open();
                 return conn;
             });
-
-
-
-            //Login session
+            
             services.AddSession();
- 
+
+            //Repos
             services.AddTransient<IContactUsRepository, ContactUsRepository>();
             services.AddTransient<IRegisterRepository, RegisterRepository>();
             services.AddTransient<ILoginRepository, LoginRepository>();
+            services.AddScoped<IWeatherRepository, WeatherRepository>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllersWithViews();
