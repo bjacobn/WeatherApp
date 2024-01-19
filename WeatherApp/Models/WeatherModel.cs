@@ -10,10 +10,6 @@
         public string temperature { get; set; }
         public string atmosphere { get; set; }
         public string condition { get; set; }
-
-        public string Message { get; set; }
-
-
         
     }
 }

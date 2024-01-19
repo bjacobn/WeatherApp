@@ -44,7 +44,6 @@ namespace WeatherApp.Controllers
             }
             else
             {
-
                 viewModel.Message = "Error";
                 ModelState.Clear();
             }

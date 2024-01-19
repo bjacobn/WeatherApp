@@ -17,27 +17,16 @@ namespace WeatherApp.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewWeatherAsync(string country)
         {
-
-            var viewModel = new WeatherModel();
+            ViewBag.Search = country;
             var weather = await _weatherRepo.GetWeatherAsync(country);
-
-
+      
             if (weather.Country == null)
             {
-
-                viewModel.Message = "Error";
-                ViewBag.Search = country;
-
+                ViewBag.Error = "Error";
                 return View("../Home/Index");
             }
+
             return View(weather);
         }
     }
 }
-
-
-
-
-
-
-

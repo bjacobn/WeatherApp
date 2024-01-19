@@ -18,7 +18,9 @@ namespace WeatherApp
         //Authorize user
         public async Task<LoginModel> GetUserAsync(string email, string password)
         {
-            var user = await _conn.QueryAsync<LoginModel>("SELECT * FROM userdata WHERE Email ='" + email + "' and Password='" + password + "'");
+            //var user = await _conn.QueryAsync<LoginModel>("SELECT * FROM userdata WHERE Email ='" + email + "' and Password='" + password + "'");
+
+            var user = await _conn.QueryAsync<LoginModel>("SELECT * FROM userdata WHERE Email = @email and Password = @password", new { email = email, password = password });
 
             if (user.Count() > 0)
             {

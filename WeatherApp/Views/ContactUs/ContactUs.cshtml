@@ -25,14 +25,13 @@
 
                     <input type="submit" style="background-color:dodgerblue;color:white;" value="Submit" />
 
-                    //Data succesfully stored in database
+                    
                     @if (Model.Message == "Success")
                     {
                         <p style="color: green; font-size:medium;font-weight:bold">Message sent successfully!</p>
                     }
 
 
-                    //Data failed to store in database
                     @if (Model.Message == "Error")
                     {
                         <p style="color: red; font-size:medium;font-weight:bold">Feedback not sent, please try again.</p>
